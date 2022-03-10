@@ -1,0 +1,6 @@
+,Origen,Temperatura actual,Humedad actual,Presión actual,Clima actual,Destino,Temperatura esperada,Humedad esperada,Presión esperada,Clima esperado
+0,MEX,18.0 °C,25%,1024 Pa,cielo claro,MIA,24.2 °C,87%,1017 Pa,algo de nubes
+1,GDL,17.0 °C,34%,1020 Pa,cielo claro,DFW,7.2 °C,55%,1017 Pa,cielo claro
+2,MEX,18.0 °C,25%,1024 Pa,cielo claro,AMS,2.7 °C,60%,1021 Pa,cielo claro
+3,GDL,17.0 °C,34%,1020 Pa,cielo claro,DFW,7.2 °C,55%,1017 Pa,cielo claro
+4,MEX,18.0 °C,25%,1024 Pa,cielo claro,SCL,18.0 °C,55%,1016 Pa,cielo claro
