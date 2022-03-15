@@ -11,14 +11,24 @@ Al finalizar el proceso, las listas de orígenes y llegadas serán convertidas a
 ## Motivación
 
 A primera instancia, mi primera idea fue realizar un scraper que visitara el sitio de Yahoo Weather, buscara las localizaciones según su código IATA y regresara el clima buscado. Después de hacer una pequeña prueba, descubrí que cada localización tardaba un promedio de 2 segundos de procesamiento, por lo que desistí en esa idea y decidí hacerlo con la API de OpenWeatherMap. Además se implementó un caché rústico por medio de diccionarios de Python para evitar llamadas innecesarias a la API.
+Se escogió Python por la rapidez de escritura que presenta al no ser necesario hacer clases porque mi equipo es de una persona.
 
 ## Prerrequisitos
 
-Se necesita tener Python (versión 3 en adelante) y haber instalado las paqueterías requests, pandas y numpy. Requests se utilizó para conseguir la información de OpenWeatherMap, pandas para leer y escribir archivos de extensión csv (entrada y salida) y numpy se usó para crear índices aleatorios y probar el funcionamiento del programa.
+Se necesita tener Python (versión 3 en adelante) y haber instalado las paqueterías requests, json, thread6, pandas y numpy.
+Requests se utiliza para conseguir la información de OpenWeatherMap mediante la función get que utiliza la URL de la API como entrada y regresa la información como interfaz response. Luego, el método json de la paquetería de mismo nombre se encarga de leer la salida de requests. Thread6 se utiliza para aplicar paralelismo con la creación de Threads para cada proceso inquisitivo: una para el clima del lugar de origen y otra para el del lugar destino. Pandas se usa para leer el archivo de datos a buscar (entrada del programa) con extensión csv mediante el método read_csv. Finalmente, numpy se usó para crear índices aleatorios y probar el funcionamiento del programa con vuelos distintos.
+
+## Ejecución
+
+El primer paso es descargar la carpeta en un directorio elegido. Luego, en la terminal (Windows), se utilizará el comando
+  cd path="directorio\de\la\carpeta"
+Es crucial asegurarse que el directorio contiene los archivos src.py y test.py. El siguiente y último paso es ejecutar el programa test.py con el comando
+  python __main__.py
+El resultado final será una tabla con la información climática del origen y destino de cinco vuelos; deberá aparecer en la misma terminal.
 
 ## Funcionamiento
 
-Nota: aquí habrán screenshots del funcionamiento del programa junto con descripciones de lo que hace cada parte.
+El programa utiliza la paquetería básica de python os para generar un directorio relativo a la localización del programa y encontrar el csv con los vuelos para que no haya necesidad de introducirlo el directorio de la persona que utilice el programa. Así es como el método data() genera la lectura y conversión de dichos datos en un dataframe para poder acceder a las coordenadas de los lugares. Con los métodos datum_origin y datum_destination, cuyas entradas son un índice, el dataframe con los vuelos, un cache de diccionario y una lista, los códigos IATA son buscados en el diccionario para evitar repetir búsquedas. Si no se encuentran dichas llaves se procede a crear una nueva entrada para el caché con la función new_data, la cual llama y genera un índice diferenciador dependiente de si el lugar es un origen o un destino. La entrada al caché de la función mencionada usa el diferenciador proporcionado para buscar las coordenadas de la localización y accede a la API de OpenWeatherMap le proporciona el formato json para acceder a el clima de dicha localización y extrae la información climática requerida, la cual es almacenada en una lista junto con la clave IATA para mostrarlo en el resultado. Posteriormente, se crea una nueva entrada con el código IATA como llave y una lista con el clima del lugar. Finalmente, la información de las listas de origen y destino es juntada en un dataframe ordenado según los índices de los vuelos buscados que se despliega en la terminal una vez acabado el proceso.
 
 ## Mantenimiento a futuro
 
