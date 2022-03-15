@@ -14,11 +14,16 @@ A primera instancia, mi primera idea fue realizar un scraper que visitara el sit
 
 ## Prerrequisitos
 
-Se necesita tener Python (versión 3 en adelante) y haber instalado las paqueterías requests, pandas y numpy. Requests se utilizó para conseguir la información de OpenWeatherMap, pandas para leer y escribir archivos de extensión csv (entrada y salida) y numpy se usó para crear índices aleatorios y probar el funcionamiento del programa.
+Se necesita tener Python (versión 3 en adelante) y haber instalado las paqueterías requests, json, thread6, pandas y numpy.
+Requests se utiliza para conseguir la información de OpenWeatherMap mediante la función get que utiliza la URL de la API como entrada y regresa la información como interfaz response. Luego, el método json de la paquetería de mismo nombre se encarga de leer la salida de requests. Thread6 se utiliza para aplicar paralelismo con la creación de Threads para cada proceso inquisitivo: una para el clima del lugar de origen y otra para el del lugar destino. Pandas se usa para leer el archivo de datos a buscar (entrada del programa) con extensión csv mediante el método read_csv. Finalmente, numpy se usó para crear índices aleatorios y probar el funcionamiento del programa con vuelos distintos.
 
 ## Funcionamiento
 
-Nota: aquí habrán screenshots del funcionamiento del programa junto con descripciones de lo que hace cada parte.
+El primer paso es descargar la carpeta en un directorio elegido. Luego, en la terminal (Windows), se utilizará el comando
+  cd path="directorio\de\la\carpeta\"
+Es crucial asegurarse que el directorio contiene los archivos src.py y test.py. El siguiente y último paso es ejecutar el programa test.py con el comando
+  python __main__.py
+El resultado final será una tabla con la información climática del origen y destino de cinco vuelos; deberá aparecer en la misma terminal.
 
 ## Mantenimiento a futuro
 
