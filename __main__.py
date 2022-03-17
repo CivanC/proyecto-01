@@ -1,4 +1,4 @@
 from src import *
-from test import *
 
-print(run())
+if __name__ == "__main__":
+    print(run())
